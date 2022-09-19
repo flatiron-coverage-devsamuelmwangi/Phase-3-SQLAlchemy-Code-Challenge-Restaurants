@@ -14,10 +14,10 @@ start coding_. Remember to identify a single source of truth for your data.
 
 ## Topics
 
-- SQLalchemy Migrations
-- SQLalchemy Relationships
+- SQLAlchemy Migrations
+- SQLAlchemy Relationships
 - Class and Instance Methods
-- SQLalchemy Querying
+- SQLAlchemy Querying
 
 ***
 
@@ -84,11 +84,8 @@ attributes specified in the deliverables below.
 Write the following methods in the classes in the files provided. Feel free to
 build out any helper methods if needed.
 
-Deliverables use the notation `#` for instance methods, and `.` for class
-methods.
-
-Remember: SQLalchemy give your classes access to a lot of methods already!
-Keep in mind what methods SQLalchemy gives you access to on each of your
+Remember: SQLAlchemy give your classes access to a lot of methods already!
+Keep in mind what methods SQLAlchemy gives you access to on each of your
 classes when you're approaching the deliverables below.
 
 ### Migrations
@@ -110,57 +107,57 @@ deliverables.
 
 ### Object Relationship Methods
 
-Use SQLalchemy query methods where
-appropriate (i.e. `has_many`, `has_many through`, and `belongs_to`).
+Use SQLAlchemy query methods where
+appropriate.
 
 #### Review
 
-- `Review#customer`
+- `Review customer()`
   - should return the `Customer` instance for this review
-- `Review#restaurant`
+- `Review restaurant()`
   - should return the `Restaurant` instance for this review
 
 #### Restaurant
 
-- `Restaurant#reviews`
+- `Restaurant reviews()`
   - returns a collection of all the reviews for the `Restaurant`
-- `Restaurant#customers`
+- `Restaurant customers()`
   - returns a collection of all the customers who reviewed the `Restaurant`
 
 #### Customer
 
-- `Customer#reviews`
+- `Customer reviews()`
   - should return a collection of all the reviews that the `Customer` has left
-- `Customer#restaurants`
+- `Customer restaurants()`
   - should return a collection of all the restaurants that the `Customer` has
     reviewed
 
 Use `python debug.py` and check that these methods work before proceeding. For
-example, you should be able to call `Customer.first.restaurants` and see a list
+example, you should be able to call `session.query(Customer).first().restaurants` and see a list
 of the restaurants for the first customer in the database based on your seed
-data; and `Review.first.customer` should return the customer for the first
+data; and `session.query(Review).first().customer` should return the customer for the first
 review in the database.
 
 ### Aggregate and Relationship Methods
 
 #### Customer
 
-- `Customer#full_name`
+- `Customer full_name()`
   - returns the full name of the customer, with the first name and the last name
     concatenated, Western style.
-- `Customer#favorite_restaurant`
+- `Customer favorite_restaurant()`
   - returns the restaurant instance that has the highest star rating from this customer
-- `Customer#add_review(restaurant, rating)`
+- `Customer add_review(restaurant, rating)`
   - takes a `restaurant` (an instance of the `Restaurant` class) and a rating
   - creates a new review for the restaurant with the given `restaurant_id`
-- `Customer#delete_reviews(restaurant)`
+- `Customer delete_reviews(restaurant)`
   - takes a `restaurant` (an instance of the `Restaurant` class) and
   - removes **all** their reviews for this restaurant
   - you will have to delete rows from the `reviews` table to get this to work!
 
 #### Review
 
-- `Review#full_review`
+- `Review full_review()`
   - should return a string formatted as follows:
 
 ```txt
@@ -169,11 +166,11 @@ Review for {insert restaurant name} by {insert customer's full name}: {insert re
 
 #### Restaurant
 
-- `Restaurant.fanciest`
+- `Restaurant fanciest(), this method should be a class method`
   - returns _one_ restaurant instance for the restaurant that has the highest
     price
-- `Restaurant#all_reviews`
-  - should return an Array of strings with all the reviews for this restaurant
+- `Restaurant all_reviews()`
+  - should return an list of strings with all the reviews for this restaurant
     formatted as follows:
 
 ```py
