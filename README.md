@@ -179,3 +179,11 @@ Review for {insert restaurant name} by {insert customer's full name}: {insert re
   "Review for {insert restaurant name} by {insert customer's full name}: {insert review star_rating} stars.",
 ]
 ```
+
+# Solved
+## Run Instructions
+- To get started, run `pipenv install && pipenv shell` while inside of root directory.
+- Run `alembic upgrade head`
+- Run `python seed.py`
+- Run `python debug.py`
+- Run ` session.query(Customer).first().first_name` (Should return `John`)
